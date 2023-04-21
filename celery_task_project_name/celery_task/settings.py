@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "monitor_task"
+    "monitor_task",
+    "django_celery_results",
+    "celery_progress",
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,15 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# install redis please refer this
+# https://gist.github.com/milon/5d8ac6153da328678ed4
+
+CELERY_BROKER_URL = "redis://127.0.0.1:6379"
+
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+# CELERY_TASK_BACKEND = "django-db"
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "Asia/Kolkata"
